@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 <body>
   <h1>Bootstrap</h1>
   <!--image slider start-->

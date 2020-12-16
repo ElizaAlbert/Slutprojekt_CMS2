@@ -19,7 +19,7 @@ function add_theme_scripts()
 add_action('wp_enqueue_scripts', 'add_bootstrap_cdn');
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
-
+//Acf custom options page
 if (function_exists('acf_add_options_page')) {
 
   acf_add_options_page();
