@@ -88,5 +88,8 @@ node_modules/
 *.sql
 *.sqlite
 
-# End of https://www.toptal.com/developers/gitignore/api/wordpress,macos,windows
+# ignore visual studio code workspace file
 wp-content/themes/ithstheme/cms2_slutprojekt.code-workspace
+
+# ignore wordpress plugins folde
+wp-content/plugins
