@@ -89,3 +89,4 @@ node_modules/
 *.sqlite
 
 # End of https://www.toptal.com/developers/gitignore/api/wordpress,macos,windows
+wp-content/themes/ithstheme/cms2_slutprojekt.code-workspace
