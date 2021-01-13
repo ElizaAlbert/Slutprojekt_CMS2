@@ -28,6 +28,20 @@ ul li {
     padding: 0 28px;
 }
 
+@media (max-width: 768px) {
+    ul li {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+    .my-account {
+        right: 20px !important;
+    }
+    .my-account.icon {
+        right: 130px !important;
+    }
+}
+
 .main {
     min-height: 80vh;
 }
