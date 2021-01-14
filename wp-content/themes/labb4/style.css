@@ -46,6 +46,16 @@ ul li {
     min-height: 80vh;
 }
 
+.banner {
+    width: auto;
+    height: 600px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin-bottom: 70px;
+}
+
 .my-account {
     position: absolute;
     right: 50px;
@@ -72,4 +82,14 @@ footer h1 {
     color: #aaa;
     font-size: 30px;
     font-weight: 500;
+}
+
+.site-info {
+    color: rgb(159, 153, 241);
+    margin: 0;
+    font-size: 28px;
+    padding: 10px 0;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    margin-top: 15px;
 }
