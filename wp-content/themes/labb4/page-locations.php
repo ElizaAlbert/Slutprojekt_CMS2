@@ -31,7 +31,7 @@
       <div><?php the_content(); ?>
       </div>
     </div>
-    <div class="col-md-7 pt-3 pb-3">
+    <div class="col-md-7 pt-3 pb-3 maps">
       <?php the_field('g_maps') ?>
     </div>
     <?php wp_reset_postdata(); ?>

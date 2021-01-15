@@ -93,3 +93,8 @@ footer h1 {
     text-transform: uppercase;
     margin-top: 15px;
 }
+.maps iframe {
+    height: 100%;
+    width: 100%;
+
+}
