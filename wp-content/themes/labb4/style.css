@@ -28,8 +28,32 @@ ul li {
     padding: 0 28px;
 }
 
+@media (max-width: 768px) {
+    ul li {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+    .my-account {
+        right: 20px !important;
+    }
+    .my-account.icon {
+        right: 130px !important;
+    }
+}
+
 .main {
     min-height: 80vh;
+}
+
+.banner {
+    width: auto;
+    height: 600px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin-bottom: 70px;
 }
 
 .my-account {
@@ -58,4 +82,14 @@ footer h1 {
     color: #aaa;
     font-size: 30px;
     font-weight: 500;
+}
+
+.site-info {
+    color: rgb(159, 153, 241);
+    margin: 0;
+    font-size: 28px;
+    padding: 10px 0;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    margin-top: 15px;
 }
