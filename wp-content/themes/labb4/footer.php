@@ -27,7 +27,7 @@
     &copy Tiffany & Co <?php echo date('Y'); ?>
   </div>
 </footer>
-<?php get_footer(); ?>
+<?php wp_footer(); ?>
 </body>
 
 </html>
