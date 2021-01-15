@@ -17,7 +17,6 @@
 
 <!-- store content custom post type-->
 <div class="container">
-
   <?php
           $args = array( 'post_type' => 'store', 'posts_per_page' => 20, );
           $the_query = new WP_Query($args);
@@ -25,18 +24,23 @@
               while ($the_query->have_posts()) {
                   $the_query->the_post(); ?>
 
-  <h2><?php the_title(); ?>
-  </h2>
-  <?php the_field('g_maps') ?>
-
-  <?php wp_reset_postdata(); ?>
-
+  <div class="row shadow mb-3">
+    <div class="col-md-5">
+      <h2><?php the_title(); ?>
+      </h2>
+      <div><?php the_content(); ?>
+      </div>
+    </div>
+    <div class="col-md-7 pt-3 pb-3">
+      <?php the_field('g_maps') ?>
+    </div>
+    <?php wp_reset_postdata(); ?>
+  </div>
 
 
   <?php
               } ?>
-</div>
-<?php
+  <?php
           } ?>
 </div>
 <?php get_footer();
