@@ -1,19 +1,20 @@
 <?php get_header(); ?>
-<!-- Testing resent posts -->
-<h2>Recent Posts</h2>
-<ul>
-  <?php
-    $args = array( 'numberposts' => '1' );
-    $recent_posts = wp_get_recent_posts($args);
-    foreach ($recent_posts as $recent) {
-        printf(
-            '<li><a href="%1$s">%2$s</a></li>',
-            esc_url(get_permalink($recent['ID'])),
-            apply_filters('the_title', $recent['post_title'], $recent['ID'])
-        );
-    }
+
+<div class="row puff">
+  <div class="col-lg-3">
+    <h2>Recent News</h2>
+  </div>
+  <div class="col-lg-9">
+    <?php $the_query = new WP_Query('posts_per_page=1'); ?>
+    <?php while ($the_query -> have_posts()) : $the_query -> the_post(); ?>
+    <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+    <?php the_excerpt(__('(more…)')); ?>
+    <?php
+endwhile;
+wp_reset_postdata();
 ?>
-</ul>
+  </div>
+</div>
 
 <div class="row">
 
