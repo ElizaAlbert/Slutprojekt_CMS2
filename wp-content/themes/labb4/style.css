@@ -69,6 +69,21 @@ ul li {
     right: 165px;
 }
 
+img.card-img-top {
+    width: 338px;
+    height: 247px;
+}
+
+img.img-top-single {
+    width: 650px;
+    height: 350px;
+    border-bottom: black solid 1px;
+    border-left: black solid 1px;
+}
+
+.single-content {
+    margin-top: 30px;
+}
 
 footer {
     width: 100%;
