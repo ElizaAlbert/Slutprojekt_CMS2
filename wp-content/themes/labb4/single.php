@@ -8,6 +8,7 @@
         <div class="single-content">
           <h1><?php the_title(); ?></h1>
           <p><?php the_content(); ?></p>
+          <a href="<?php the_field( "product-link" ); ?>">Product Link</a>
           </div>
     </div>
     <?php endwhile; ?>
