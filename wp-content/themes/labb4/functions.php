@@ -26,6 +26,16 @@ function slutprojekt_menus()
 }
 add_action('init', 'slutprojekt_menus');
 
+function slutprojekt_custom_excerpt($excerpt) {
+    if (has_excerpt()) {
+        $excerpt = wp_trim_words(get_the_excerpt(), apply_filters("excerpt_length", 30));
+    }
+
+    return $excerpt;
+}
+
+add_filter("the_excerpt", "slutprojekt_custom_excerpt", 999);
+
 function slutprojekt_add_woocommerce_support()
 {
     add_theme_support('woocommerce');
