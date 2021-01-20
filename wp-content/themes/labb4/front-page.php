@@ -23,20 +23,73 @@
 <div class="container">
   <!-- start container from header -->
   <div class="row">
-
     <div class="col-lg-12">
 
-      <h1 class="text-center">Best Sellers</h1>
-      <p class="text-center">Brilliant design and unparalleled craftsmanship.</p>
-      <?php
-echo do_shortcode('[best_selling_products columns="4" per_page="8"]');
-?>
+  <h1 class="text-center">Best Sellers</h1>
+  <p class="text-center">Brilliant design and unparalleled craftsmanship.</p>
+  <div class="best-seller">
+  <?php
+    $args = array(
+    'post_type' => 'product',
+    'posts_per_page' => 4,
+    'meta_key' => 'total_sales',
+    'orderby' => 'meta_value_num',
+    'tax_query' => array( 
+        array(
+          'taxonomy' => 'product_cat',
+          'field' => 'slug',
+          'terms' => array( 'catalogues' ),
+          'operator' => 'NOT IN'
+        )
+    ),
+    );
+    $bestSelling = new WP_Query( $args );
+    while ( $bestSelling->have_posts() ) : $bestSelling->the_post(); global $product; ?>
+    <a id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+    <?php if (has_post_thumbnail( $bestSelling->post->ID )) echo get_the_post_thumbnail($bestSelling->post->ID, 'shop_catalog'); 
+    else echo '<p>No image found</p>'; ?>
+    <h3><?php the_title(); ?></h3>
+  <p><?php echo $product->get_price_html(); ?></p>
+    </a>
+    
+    <?php endwhile; ?>
+    </div>
+        <?php wp_reset_query(); ?>
 
       <h1 class="text-center">Shop by Category</h1>
       <p class="text-center">Brilliant design and unparalleled craftsmanship.</p>
-      <?php
-echo do_shortcode('[product_categories columns="6" number="6"]');
-?>
+
+<div class="categories">
+ <?php
+ $args = array(
+          'taxonomy' => 'product_cat',
+          'hide_empty' => false,
+          'parent'   => 0
+      );
+  $product_cat = get_terms( $args );
+
+  foreach ($product_cat as $parent_product_cat) {
+
+  echo '
+        <h3><a href="'.get_term_link($parent_product_cat->term_id).'">'.$parent_product_cat->name.'</a></h3><br>
+        <ul>
+       ';
+  $child_args = array(
+              'taxonomy' => 'product_cat',
+              'hide_empty' => false,
+              'parent'   => $parent_product_cat->term_id
+          );
+  $child_product_cats = get_terms( $child_args );
+  foreach ($child_product_cats as $child_product_cat)
+  {
+    echo '<li><a href="'.get_term_link($child_product_cat->term_id).'">'.$child_product_cat->name.'</a></li>';
+  }
+
+  echo '
+    </ul>';
+  }?>
+</div>
+
 
     </div>
   </div>
