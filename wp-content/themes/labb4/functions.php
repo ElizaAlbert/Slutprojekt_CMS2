@@ -6,6 +6,7 @@
       wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', array(), '4.5.2');
       wp_enqueue_script('jquery');
       wp_enqueue_script('bootstrapjs', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array('jquery'), '4.5.2', true);
+      //   wp_enqueue_script('checkoutfix', get_template_directory_uri() .'/checkoutfix.js', array('jquery'), '1', true);
   }
   add_action('wp_enqueue_scripts', 'slutprojekt_styles');
 
