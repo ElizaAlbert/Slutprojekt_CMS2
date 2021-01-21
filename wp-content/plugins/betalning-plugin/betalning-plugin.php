@@ -59,7 +59,7 @@ function eliza_init_gateway_class() {
 			'title'       => 'Title',
 			'type'        => 'text',
 			'description' => 'This controls the title which the user sees during checkout.',
-			'default'     => 'Invoice',
+			'default'     => 'Invoice Payment',
 			'desc_tip'    => true,
 		),
 		'description' => array(
