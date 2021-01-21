@@ -3,37 +3,66 @@
 * Plugin Name: Pickup in store
 * Author: Emil Backlund
 */
-
-function get_store_titles()
-{
-    $post_type_query  = new WP_Query(
-        array(
-  'post_type'      => 'store',
-  'posts_per_page' => -1
-)
-    );
-
-    $posts_array = $post_type_query->posts;
-    $store_locations = wp_list_pluck($posts_array, 'post_title', 'ID');
-    echo '<label for="storeLocations">Pickup in store </label>';
-    echo '<select name="storeLocations" id="storeLocations">';
-    foreach ($store_locations as $value) {
-        echo '<option value="'.$value.'">'.$value.'</option>';
-    }
-    echo '</select>';
+if (! defined('ABSPATH')) {
+    exit;
 }
 
-add_action('woocommerce_checkout_after_customer_details', 'get_store_titles');
-class Pickup
-{
-    public $content= '';
 
-    public function set_store_locations($content)
-    {
-        $this->content = $content;
-    }
-    public function get_store_locations()
-    {
-        return $this->content;
-    }
+/**
+ * Add the field to the checkout
+ */
+ add_action('woocommerce_after_order_notes', 'my_custom_checkout_field');
+
+ function my_custom_checkout_field($checkout)
+ {
+     $post_type_query  = new WP_Query(
+         array(
+ 'post_type'      => 'store',
+ 'posts_per_page' => -1
+)
+     );
+
+     $posts_array = $post_type_query->posts;
+     $store_locations = wp_list_pluck($posts_array, 'post_title', 'ID');
+    
+     //  $array = $store_locations;
+     //  $test_var = array();
+     //  foreach ($store_locations as $key => $value) {
+     //      $test_var[] = $value;
+     //  }
+     
+
+     echo '<span id="my_custom_checkout_field"><h2>' . __('Pickup in store') . '</h2>';
+
+     woocommerce_form_field('my_field_name', array(
+         'type'          => 'select',
+         'class'         => array('my-field-class'),
+         'options'       => $store_locations,
+         'label'         => __('Select store for pickup'),
+         'default'       => 'None',
+         ), $checkout->get_value('my_field_name'));
+ 
+     echo '</span>';
+ }
+
+
+/**
+ * Update the order meta with field value
+ */
+ add_action('woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta');
+
+ function my_custom_checkout_field_update_order_meta($order_id)
+ {
+     if (! empty($_POST['my_field_name'])) {
+         update_post_meta($order_id, 'My Field', sanitize_text_field($_POST['my_field_name']));
+     }
+ }
+ /**
+ * Display field value on the order edit page
+ */
+add_action('woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1);
+
+function my_custom_checkout_field_display_admin_order_meta($order)
+{
+    echo '<p><strong>'.__('Pickup in store').':</strong> ' . get_post_meta($order->id, 'Pickup in store', true) . '</p>';
 }
