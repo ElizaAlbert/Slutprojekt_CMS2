@@ -60,7 +60,7 @@ Template Name: Contact Page
 <div>
 
 <!-- This shortcode is placed on this page only for view -->
-<?php echo do_shortcode("[lorem]"); ?>
+<?php echo do_shortcode("[on-sale-products]"); ?>
 
 </div>
 </body>

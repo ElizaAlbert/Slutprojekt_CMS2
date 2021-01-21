@@ -91,4 +91,4 @@ function onSaleProductsShortcode() {?>
 
 
 </div>
-<?php add_shortcode('lorem', 'onSaleProductsShortcode');  ?>
+<?php add_shortcode('on-sale-products', 'onSaleProductsShortcode');  ?>
