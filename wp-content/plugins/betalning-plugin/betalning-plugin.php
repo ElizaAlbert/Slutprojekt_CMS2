@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name: Invoice Payment -E
- * Description: Take credit card payments on your store.
+ * Plugin Name: Invoice Payment
+ * Description: Take invoice payment with social security number.
  * Author: Eliza Albert
  */
 
