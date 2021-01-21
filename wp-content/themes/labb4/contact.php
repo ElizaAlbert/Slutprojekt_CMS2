@@ -55,7 +55,14 @@ Template Name: Contact Page
     endwhile; // end of the loop. ?>
     </div>
         </div>
+            </div>
+        </div>
+<div>
 
+<!-- This shortcode is placed on this page only for view -->
+<?php echo do_shortcode("[lorem]"); ?>
+
+</div>
 </body>
 <?php wp_footer(); ?>
 </html>
