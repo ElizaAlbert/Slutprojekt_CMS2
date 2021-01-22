@@ -26,7 +26,7 @@ if (! defined('ABSPATH')) {
      $store_locations = wp_list_pluck($posts_array, 'post_title', 'ID');
   
      $store_locations=array("None"=>"None") + $store_locations;
-     echo var_dump($store_locations);
+   
      echo '<span id="my_custom_checkout_field"><h2>' . __('Pickup in store') . '</h2>';
 
      woocommerce_form_field('my_field_name', array(
