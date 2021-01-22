@@ -84,6 +84,7 @@ wp-content/plugins/under-construction-page
 
 # ignore specific themes
 wp-content/themes/twenty*/
+wp-content/themes/storefront/
 
 
 # ignore node dependency directories

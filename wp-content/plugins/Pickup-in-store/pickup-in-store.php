@@ -24,13 +24,8 @@ if (! defined('ABSPATH')) {
 
      $posts_array = $post_type_query->posts;
      $store_locations = wp_list_pluck($posts_array, 'post_title', 'ID');
-    
-     //  $array = $store_locations;
-     //  $test_var = array();
-     //  foreach ($store_locations as $key => $value) {
-     //      $test_var[] = $value;
-     //  }
-     
+  
+
 
      echo '<span id="my_custom_checkout_field"><h2>' . __('Pickup in store') . '</h2>';
 
@@ -40,11 +35,11 @@ if (! defined('ABSPATH')) {
          'options'       => $store_locations,
          'label'         => __('Select store for pickup'),
          'default'       => 'None',
-         ), $checkout->get_value('my_field_name'));
+         ), 'banan');
  
      echo '</span>';
  }
-
+//  $checkout->$store_locations[get_value('my_field_name')]
 
 /**
  * Update the order meta with field value
@@ -64,5 +59,18 @@ add_action('woocommerce_admin_order_data_after_billing_address', 'my_custom_chec
 
 function my_custom_checkout_field_display_admin_order_meta($order)
 {
-    echo '<p><strong>'.__('Pickup in store').':</strong> ' . get_post_meta($order->id, 'Pickup in store', true) . '</p>';
+    $post_type_query  = new WP_Query(
+        array(
+                'post_type'      => 'store',
+                'posts_per_page' => -1
+            )
+    );
+
+    $posts_array = $post_type_query->posts;
+    $store_locations = wp_list_pluck($posts_array, 'post_title', 'ID');
+    $store_index = get_post_meta($order->id, 'My Field', true);
+
+    // $pickup_store_location =
+
+    echo '<p><strong>'.__('Pickup in store').':</strong> ' . $store_locations[$store_index] . '</p>';
 }

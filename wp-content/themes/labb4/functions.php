@@ -55,18 +55,18 @@ add_action('after_setup_theme', 'slutprojekt_add_woocommerce_support');
 
 function onSaleProductsShortcode() {?>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-  <h1 class="text-center">Products on Sale</h1>
-  <p class="text-center">Brilliant design and unparalleled craftsmanship.</p>
-  <div class="on-sale">
-  <?php
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-center">Products on Sale</h1>
+            <p class="text-center">Brilliant design and unparalleled craftsmanship.</p>
+            <div class="on-sale">
+                <?php
     $args = array(
     'post_type' => 'product',
     'posts_per_page' => 4,
     'meta_key' => '_sale_price',
     'orderby' => 'meta_value_num',
-    'tax_query' => array( 
+    'tax_query' => array(
         array(
           'taxonomy' => 'product_cat',
           'field' => 'slug',
@@ -75,20 +75,23 @@ function onSaleProductsShortcode() {?>
         )
     ),
     );
-    $onSale = new WP_Query( $args );
-    while ( $onSale->have_posts() ) : $onSale->the_post(); global $product; ?>
+    $onSale = new WP_Query($args);
+    while ($onSale->have_posts()) : $onSale->the_post(); global $product; ?>
 
-    <a style="color: black;"
-    id="id-<?php the_id(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-    <h3><?php the_title(); ?></h3>
-    <?php echo get_the_post_thumbnail($onSale->post->ID, 'shop_catalog'); ?>
-    <p style="color: red"><?php echo $product->get_price_html(); ?></p>
-    </a>
-    
-    <?php endwhile; ?>
-    </div>
-        <?php wp_reset_query(); }?>
+                <a style="color: black;" id="id-<?php the_id(); ?>"
+                    href="<?php the_permalink(); ?>"
+                    title="<?php the_title(); ?>">
+                    <h3><?php the_title(); ?>
+                    </h3>
+                    <?php echo get_the_post_thumbnail($onSale->post->ID, 'shop_catalog'); ?>
+                    <p style="color: red"><?php echo $product->get_price_html(); ?>
+                    </p>
+                </a>
+
+                <?php endwhile; ?>
+            </div>
+            <?php wp_reset_query(); }?>
 
 
-</div>
-<?php add_shortcode('on-sale-products', 'onSaleProductsShortcode');  ?>
+        </div>
+        <?php add_shortcode('on-sale-products', 'onSaleProductsShortcode');
